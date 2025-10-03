@@ -1,24 +1,60 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Lock, Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { Lock, Eye, EyeOff, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-
-const portfolioData = [
-  { asset: "ETH", amount: 2.4567, value: 5763.45, change: "+12.34%" },
-  { asset: "BTC", amount: 0.0834, value: 3421.89, change: "+8.21%" },
-  { asset: "USDT", amount: 1234.56, value: 1234.56, change: "0.00%" },
-];
-
-const tradeHistory = [
-  { type: "Buy", pair: "ETH/USDT", amount: "***.**", price: "2,345.67", date: "2024-01-15 14:23" },
-  { type: "Sell", pair: "BTC/ETH", amount: "***.**", price: "15.234", date: "2024-01-15 12:45" },
-  { type: "Buy", pair: "SOL/USDT", amount: "***.**", price: "98.45", date: "2024-01-14 18:12" },
-];
+import { usePrivateTrading } from "@/hooks/usePrivateTrading";
+import { useWeb3 } from "@/hooks/useWeb3";
+import { Badge } from "@/components/ui/badge";
 
 export const Portfolio = () => {
+  const { isConnected } = useWeb3();
+  const { 
+    encryptedBalances, 
+    encryptedOrders, 
+    getDecryptedBalance, 
+    loadEncryptedBalances,
+    isLoading,
+    error 
+  } = usePrivateTrading();
+  
   const [showBalances, setShowBalances] = useState(false);
+  const [decryptedBalances, setDecryptedBalances] = useState<{[key: string]: string}>({});
 
-  const totalValue = portfolioData.reduce((acc, item) => acc + item.value, 0);
+  // Load encrypted balances when connected
+  useEffect(() => {
+    if (isConnected) {
+      loadEncryptedBalances();
+    }
+  }, [isConnected, loadEncryptedBalances]);
+
+  // Decrypt balances when showBalances is true
+  useEffect(() => {
+    if (showBalances && encryptedBalances.length > 0) {
+      const decryptAll = async () => {
+        const decrypted: {[key: string]: string} = {};
+        for (const balance of encryptedBalances) {
+          const decryptedAmount = await getDecryptedBalance(balance.token);
+          if (decryptedAmount) {
+            decrypted[balance.token] = decryptedAmount;
+          }
+        }
+        setDecryptedBalances(decrypted);
+      };
+      decryptAll();
+    }
+  }, [showBalances, encryptedBalances, getDecryptedBalance]);
+
+  // Mock trade history (in real implementation, this would come from encrypted orders)
+  const tradeHistory = encryptedOrders.map(order => ({
+    type: order.side === 'buy' ? 'Buy' : 'Sell',
+    pair: order.pair,
+    amount: "***.**",
+    price: "***.**",
+    date: new Date(order.timestamp).toLocaleString(),
+    status: order.status,
+  }));
+
+  const totalValue = encryptedBalances.length > 0 ? 10420.90 : 0; // Mock total value
 
   return (
     <div className="space-y-6 animate-fade-in" id="portfolio">
@@ -53,37 +89,53 @@ export const Portfolio = () => {
 
           {/* Assets */}
           <div className="space-y-3">
-            <h3 className="font-semibold">Assets</h3>
-            {portfolioData.map((item) => (
-              <div
-                key={item.asset}
-                className="flex items-center justify-between p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center font-bold text-primary-foreground">
-                    {item.asset.slice(0, 1)}
-                  </div>
-                  <div>
-                    <div className="font-medium">{item.asset}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {showBalances ? item.amount.toFixed(4) : "***.**"}
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold">Assets</h3>
+              {isLoading && <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />}
+            </div>
+            
+            {!isConnected ? (
+              <div className="text-center py-8 text-muted-foreground">
+                <Lock className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                <p>Connect your wallet to view encrypted balances</p>
+              </div>
+            ) : encryptedBalances.length === 0 ? (
+              <div className="text-center py-8 text-muted-foreground">
+                <Lock className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                <p>No encrypted balances found</p>
+              </div>
+            ) : (
+              encryptedBalances.map((balance) => (
+                <div
+                  key={balance.token}
+                  className="flex items-center justify-between p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center font-bold text-primary-foreground">
+                      {balance.token.slice(0, 1)}
+                    </div>
+                    <div>
+                      <div className="font-medium flex items-center gap-2">
+                        {balance.token}
+                        <Badge variant="secondary" className="bg-privacy/10 text-privacy border-privacy/20 text-xs">
+                          <Lock className="h-3 w-3 mr-1" />
+                          FHE
+                        </Badge>
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {showBalances ? decryptedBalances[balance.token] || "Decrypting..." : "***.**"}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="text-right">
-                  <div className="font-medium">
-                    {showBalances ? `$${item.value.toLocaleString("en-US", { minimumFractionDigits: 2 })}` : "***.**"}
-                  </div>
-                  <div
-                    className={`text-sm ${
-                      item.change.startsWith("+") ? "text-success" : item.change === "0.00%" ? "text-muted-foreground" : "text-destructive"
-                    }`}
-                  >
-                    {item.change}
+                  <div className="text-right">
+                    <div className="font-medium">
+                      {showBalances ? `$${(parseFloat(decryptedBalances[balance.token] || "0") * 2345.67).toFixed(2)}` : "***.**"}
+                    </div>
+                    <div className="text-sm text-success">+2.34%</div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </CardContent>
       </Card>
@@ -108,23 +160,35 @@ export const Portfolio = () => {
             </div>
 
             {/* Trades */}
-            {tradeHistory.map((trade, idx) => (
-              <div
-                key={idx}
-                className="grid grid-cols-5 gap-4 text-sm py-3 hover:bg-muted/50 rounded transition-colors"
-              >
-                <span className={trade.type === "Buy" ? "text-success font-medium" : "text-destructive font-medium"}>
-                  {trade.type}
-                </span>
-                <span>{trade.pair}</span>
-                <span className="text-right flex items-center justify-end gap-1">
-                  {trade.amount}
-                  <Lock className="h-3 w-3 text-privacy/50" />
-                </span>
-                <span className="text-right">{trade.price}</span>
-                <span className="text-right text-muted-foreground">{trade.date}</span>
+            {!isConnected ? (
+              <div className="text-center py-8 text-muted-foreground">
+                <Lock className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                <p>Connect your wallet to view encrypted trade history</p>
               </div>
-            ))}
+            ) : tradeHistory.length === 0 ? (
+              <div className="text-center py-8 text-muted-foreground">
+                <Lock className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                <p>No encrypted trades found</p>
+              </div>
+            ) : (
+              tradeHistory.map((trade, idx) => (
+                <div
+                  key={idx}
+                  className="grid grid-cols-5 gap-4 text-sm py-3 hover:bg-muted/50 rounded transition-colors"
+                >
+                  <span className={trade.type === "Buy" ? "text-success font-medium" : "text-destructive font-medium"}>
+                    {trade.type}
+                  </span>
+                  <span>{trade.pair}</span>
+                  <span className="text-right flex items-center justify-end gap-1">
+                    {trade.amount}
+                    <Lock className="h-3 w-3 text-privacy/50" />
+                  </span>
+                  <span className="text-right">{trade.price}</span>
+                  <span className="text-right text-muted-foreground">{trade.date}</span>
+                </div>
+              ))
+            )}
           </div>
         </CardContent>
       </Card>

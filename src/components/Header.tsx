@@ -1,14 +1,38 @@
-import { Shield, Wallet, Sun, Moon } from "lucide-react";
+import { Shield, Wallet, Sun, Moon, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { useTheme } from "next-themes";
+import { useWeb3 } from "@/hooks/useWeb3";
+import { Badge } from "@/components/ui/badge";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const Header = () => {
-  const [isConnected, setIsConnected] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { 
+    isConnected, 
+    account, 
+    balance, 
+    chainId, 
+    error, 
+    connect, 
+    disconnect, 
+    switchToFHEVMNetwork,
+    isMetaMaskInstalled 
+  } = useWeb3();
 
-  const handleConnect = () => {
-    setIsConnected(!isConnected);
+  const handleConnect = async () => {
+    if (!isMetaMaskInstalled) {
+      alert('Please install MetaMask to use this application');
+      return;
+    }
+    await connect();
+  };
+
+  const handleDisconnect = () => {
+    disconnect();
+  };
+
+  const formatAddress = (address: string) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
   const toggleTheme = () => {
@@ -60,13 +84,55 @@ export const Header = () => {
                 <Moon className="h-5 w-5 text-primary" />
               )}
             </Button>
-            <Button
-              onClick={handleConnect}
-              className={isConnected ? "bg-success text-success-foreground hover:bg-success/90" : "gradient-accent shadow-glow"}
-            >
-              <Wallet className="mr-2 h-4 w-4" />
-              {isConnected ? "Connected" : "Connect Wallet"}
-            </Button>
+
+            {/* Error Display */}
+            {error && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <AlertCircle className="h-5 w-5 text-destructive" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{error}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+
+            {/* Wallet Connection */}
+            {isConnected ? (
+              <div className="flex items-center gap-2">
+                <Badge variant="secondary" className="bg-success/10 text-success border-success/20">
+                  <Shield className="h-3 w-3 mr-1" />
+                  FHE Protected
+                </Badge>
+                <div className="flex items-center gap-2">
+                  <div className="text-right">
+                    <div className="text-sm font-medium">{formatAddress(account!)}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {balance ? `${parseFloat(balance).toFixed(4)} ETH` : 'Loading...'}
+                    </div>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleDisconnect}
+                    className="text-xs"
+                  >
+                    Disconnect
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <Button
+                onClick={handleConnect}
+                className="gradient-accent shadow-glow"
+                disabled={!isMetaMaskInstalled}
+              >
+                <Wallet className="mr-2 h-4 w-4" />
+                {isMetaMaskInstalled ? "Connect Wallet" : "Install MetaMask"}
+              </Button>
+            )}
           </div>
         </div>
       </div>
