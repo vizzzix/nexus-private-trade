@@ -1,6 +1,20 @@
 # PrivateDEX - Privacy-First Decentralized Exchange
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-🚀%20Try%20Now-blue?style=for-the-badge&logo=github)](https://vizzzix.github.io/nexus-private-trade/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/vizzzix/nexus-private-trade)
+[![FHEVM](https://img.shields.io/badge/FHEVM-Integrated-purple?style=for-the-badge)](https://docs.zama.ai/fhevm)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
 A revolutionary decentralized exchange (DEX) built with Fully Homomorphic Encryption (FHE) technology, enabling truly private trading where order amounts and balances remain encrypted at all times.
+
+## 🚀 Live Demo
+
+**Try PrivateDEX now**: https://vizzzix.github.io/nexus-private-trade/
+
+- 🔒 **Private Trading**: Experience encrypted order placement
+- 🛡️ **MEV Protection**: See how encrypted orders prevent front-running
+- 💼 **Portfolio Management**: View your encrypted balances
+- 📊 **Order Book**: Explore the private order book interface
 
 ## 🔐 Key Features
 
