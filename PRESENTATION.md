@@ -245,10 +245,10 @@ Key Management          # Secure key generation
 ## 🙏 Thank You
 
 ### Contact Information
-- **Email**: [your-email@example.com]
+- **Email**: vizzzix@gmail.com
 - **Twitter**: [@PrivateDEX]
 - **Discord**: [PrivateDEX Community]
-- **GitHub**: [github.com/vizzzix/nexus-private-trade]
+- **GitHub**: https://github.com/vizzzix/nexus-private-trade
 
 ### Questions & Discussion
 We're excited to discuss this project with the Zama team and answer any questions about our vision, technology, or implementation.

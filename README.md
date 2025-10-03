@@ -272,3 +272,13 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 ---
 
 **Built with ❤️ for privacy and decentralization**
+
+---
+
+## 📞 Contact
+
+- **Email**: vizzzix@gmail.com
+- **GitHub**: https://github.com/vizzzix/nexus-private-trade
+- **Project**: PrivateDEX - Privacy-First Decentralized Exchange
+
+**© 2025 PrivateDEX. All rights reserved.**

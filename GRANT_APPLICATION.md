@@ -4,9 +4,9 @@
 
 **Project Name**: PrivateDEX - Privacy-First Decentralized Exchange  
 **Team**: PrivateDEX Development Team  
-**Contact**: [Your Email]  
+**Contact**: vizzzix@gmail.com  
 **GitHub**: https://github.com/vizzzix/nexus-private-trade  
-**Website**: [Your Website]  
+**Website**: https://github.com/vizzzix/nexus-private-trade  
 
 ## Executive Summary
 
@@ -106,7 +106,7 @@ struct EncryptedBalance {
 
 ## Development Roadmap
 
-### Phase 1: Core Development (Months 1-3)
+### Phase 1: Core Development (Q1 2025)
 - [x] Smart contract development
 - [x] Frontend interface
 - [x] FHEVM integration
@@ -114,14 +114,14 @@ struct EncryptedBalance {
 - [ ] Security audit
 - [ ] Testnet deployment
 
-### Phase 2: Advanced Features (Months 4-6)
+### Phase 2: Advanced Features (Q2 2025)
 - [ ] Advanced FHE operations
 - [ ] Cross-chain support
 - [ ] Mobile application
 - [ ] API for developers
 - [ ] Mainnet deployment
 
-### Phase 3: Ecosystem Growth (Months 7-12)
+### Phase 3: Ecosystem Growth (Q3-Q4 2025)
 - [ ] Institutional features
 - [ ] Advanced analytics
 - [ ] Governance token
@@ -145,11 +145,11 @@ struct EncryptedBalance {
 5. **Legal**: Compliance and regulatory consultation
 
 ### Milestones
-1. **Month 1**: Complete smart contract development
-2. **Month 2**: Frontend integration and testing
-3. **Month 3**: Security audit and testnet deployment
-4. **Month 4**: Mainnet deployment and launch
-5. **Month 6**: Advanced features and partnerships
+1. **Q1 2025**: Complete smart contract development
+2. **Q1 2025**: Frontend integration and testing
+3. **Q2 2025**: Security audit and testnet deployment
+4. **Q2 2025**: Mainnet deployment and launch
+5. **Q3 2025**: Advanced features and partnerships
 
 ## Team
 
@@ -232,9 +232,9 @@ The project addresses a critical need in the DeFi ecosystem and has the potentia
 ---
 
 **Contact Information**
-- Email: [your-email@example.com]
+- Email: vizzzix@gmail.com
 - Twitter: [@PrivateDEX]
 - Discord: [PrivateDEX Community]
-- GitHub: [github.com/vizzzix/nexus-private-trade]
+- GitHub: https://github.com/vizzzix/nexus-private-trade
 
 **Thank you for considering our grant application. We look forward to building the future of private DeFi with Zama.**
