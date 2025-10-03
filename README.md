@@ -265,19 +265,19 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## 🚀 Roadmap
 
-### Phase 1 (Current)
+### Phase 1 (Q1 2025) ✅
 - [x] Basic FHE integration
 - [x] Private order placement
 - [x] Encrypted balance management
 - [x] MetaMask integration
 
-### Phase 2 (Q2 2024)
+### Phase 2 (Q2-Q3 2025)
 - [ ] Advanced FHE operations
 - [ ] Cross-chain support
 - [ ] Mobile app
 - [ ] API for developers
 
-### Phase 3 (Q3 2024)
+### Phase 3 (Q4 2025 - Q1 2026)
 - [ ] Institutional features
 - [ ] Advanced analytics
 - [ ] Governance token
