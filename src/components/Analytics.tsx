@@ -39,7 +39,7 @@ export const Analytics = () => {
         {stats.map((stat, idx) => {
           const Icon = stat.icon;
           return (
-            <Card key={idx} className="border-border hover:shadow-glow transition-all duration-300">
+            <Card key={idx} className="glass-effect shadow-card hover-lift">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">{stat.label}</span>
@@ -59,7 +59,7 @@ export const Analytics = () => {
         })}
       </div>
 
-      <Card className="border-border shadow-glow">
+      <Card className="glass-effect shadow-card hover-lift">
         <CardHeader>
           <CardTitle>Platform Statistics</CardTitle>
         </CardHeader>

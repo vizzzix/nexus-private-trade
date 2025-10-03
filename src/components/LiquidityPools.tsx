@@ -12,7 +12,7 @@ const pools = [
 export const LiquidityPools = () => {
   return (
     <div className="space-y-6 animate-fade-in" id="liquidity">
-      <Card className="border-border shadow-glow">
+      <Card className="glass-effect shadow-card hover-lift">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
             <span>Liquidity Pools</span>

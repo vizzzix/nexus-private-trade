@@ -30,7 +30,7 @@ export const TradingPanel = () => {
   };
 
   return (
-    <Card className="border-border shadow-glow animate-fade-in">
+    <Card className="glass-effect shadow-card hover-lift animate-fade-in">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <span>Trade</span>

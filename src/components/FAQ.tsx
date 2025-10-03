@@ -43,7 +43,7 @@ export const FAQ = () => {
   return (
     <section className="py-16 animate-fade-in">
       <div className="container mx-auto px-4">
-        <Card className="border-border shadow-glow">
+        <Card className="glass-effect shadow-card hover-lift">
           <CardHeader>
             <CardTitle className="text-3xl text-center gradient-primary text-gradient">
               Frequently Asked Questions

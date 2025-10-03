@@ -17,14 +17,15 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-30 dark:opacity-20"
           style={{
             backgroundImage: `url(${heroBg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]" />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto mb-12 animate-fade-in">
@@ -35,14 +36,14 @@ const Index = () => {
               The first decentralized exchange powered by Fully Homomorphic Encryption (FHE).
               Keep your trading strategies and positions completely private.
             </p>
-            <div className="flex items-center justify-center gap-4 text-sm">
-              <div className="px-4 py-2 bg-privacy/20 rounded-full border border-privacy/30 shadow-privacy-glow">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+              <div className="px-5 py-2.5 glass-effect rounded-full shadow-privacy-glow hover-lift">
                 <span className="text-privacy font-medium">🔒 100% Private Amounts</span>
               </div>
-              <div className="px-4 py-2 bg-success/20 rounded-full border border-success/30">
+              <div className="px-5 py-2.5 glass-effect rounded-full hover-lift">
                 <span className="text-success font-medium">✓ Fully Decentralized</span>
               </div>
-              <div className="px-4 py-2 bg-accent/20 rounded-full border border-accent/30">
+              <div className="px-5 py-2.5 glass-effect rounded-full hover-lift">
                 <span className="text-accent font-medium">⚡ Fast Execution</span>
               </div>
             </div>
@@ -51,11 +52,11 @@ const Index = () => {
           {/* Main Trading Interface */}
           <div className="max-w-7xl mx-auto">
             <Tabs defaultValue="trade" className="space-y-6" id="trade">
-              <TabsList className="grid w-full grid-cols-4 max-w-2xl mx-auto">
-                <TabsTrigger value="trade">Trade</TabsTrigger>
-                <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
-                <TabsTrigger value="liquidity">Liquidity</TabsTrigger>
-                <TabsTrigger value="analytics">Analytics</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-4 max-w-2xl mx-auto glass-effect p-1.5">
+                <TabsTrigger value="trade" className="data-[state=active]:gradient-accent data-[state=active]:text-accent-foreground">Trade</TabsTrigger>
+                <TabsTrigger value="portfolio" className="data-[state=active]:gradient-accent data-[state=active]:text-accent-foreground">Portfolio</TabsTrigger>
+                <TabsTrigger value="liquidity" className="data-[state=active]:gradient-accent data-[state=active]:text-accent-foreground">Liquidity</TabsTrigger>
+                <TabsTrigger value="analytics" className="data-[state=active]:gradient-accent data-[state=active]:text-accent-foreground">Analytics</TabsTrigger>
               </TabsList>
 
               <TabsContent value="trade" className="space-y-6">
@@ -92,7 +93,7 @@ const Index = () => {
       <FAQ />
 
       {/* Footer */}
-      <footer className="border-t border-border py-12 mt-20">
+      <footer className="border-t border-border py-12 mt-20 glass-effect">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>

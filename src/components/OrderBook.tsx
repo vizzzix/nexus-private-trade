@@ -14,7 +14,7 @@ const orders = [
 
 export const OrderBook = () => {
   return (
-    <Card className="border-border animate-fade-in">
+    <Card className="glass-effect shadow-card hover-lift animate-fade-in">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <span>Order Book</span>

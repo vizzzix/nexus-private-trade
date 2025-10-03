@@ -23,7 +23,7 @@ export const Portfolio = () => {
   return (
     <div className="space-y-6 animate-fade-in" id="portfolio">
       {/* Portfolio Overview */}
-      <Card className="border-border shadow-glow">
+      <Card className="glass-effect shadow-card hover-lift">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
             <span>Portfolio</span>
@@ -89,7 +89,7 @@ export const Portfolio = () => {
       </Card>
 
       {/* Trade History */}
-      <Card className="border-border">
+      <Card className="glass-effect shadow-card hover-lift">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <span>Trade History</span>

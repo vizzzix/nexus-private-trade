@@ -1,16 +1,22 @@
-import { Shield, Wallet } from "lucide-react";
+import { Shield, Wallet, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useTheme } from "next-themes";
 
 export const Header = () => {
   const [isConnected, setIsConnected] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const handleConnect = () => {
     setIsConnected(!isConnected);
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
-    <header className="border-b border-border bg-card/50 backdrop-blur-lg sticky top-0 z-50">
+    <header className="border-b border-border glass-effect sticky top-0 z-50 shadow-card">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -40,14 +46,28 @@ export const Header = () => {
             </a>
           </nav>
 
-          {/* Wallet Connect */}
-          <Button
-            onClick={handleConnect}
-            className={isConnected ? "bg-success text-success-foreground hover:bg-success/90" : "gradient-accent shadow-glow"}
-          >
-            <Wallet className="mr-2 h-4 w-4" />
-            {isConnected ? "Connected" : "Connect Wallet"}
-          </Button>
+          {/* Theme & Wallet */}
+          <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full hover:bg-muted"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5 text-privacy animate-glow-pulse" />
+              ) : (
+                <Moon className="h-5 w-5 text-primary" />
+              )}
+            </Button>
+            <Button
+              onClick={handleConnect}
+              className={isConnected ? "bg-success text-success-foreground hover:bg-success/90" : "gradient-accent shadow-glow"}
+            >
+              <Wallet className="mr-2 h-4 w-4" />
+              {isConnected ? "Connected" : "Connect Wallet"}
+            </Button>
+          </div>
         </div>
       </div>
     </header>

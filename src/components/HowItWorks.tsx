@@ -43,7 +43,7 @@ export const HowItWorks = () => {
           {features.map((feature, idx) => {
             const Icon = feature.icon;
             return (
-              <Card key={idx} className="border-border hover:shadow-glow transition-all duration-300">
+              <Card key={idx} className="glass-effect shadow-card hover-lift">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-lg gradient-accent flex items-center justify-center shadow-glow">
@@ -61,7 +61,7 @@ export const HowItWorks = () => {
         </div>
 
         {/* Privacy Flow Diagram */}
-        <Card className="border-border shadow-glow">
+        <Card className="glass-effect shadow-card hover-lift">
           <CardHeader>
             <CardTitle>Privacy Flow</CardTitle>
           </CardHeader>
