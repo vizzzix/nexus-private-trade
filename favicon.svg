@@ -1,7 +1,12 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="32" height="32" rx="8" fill="#1a1a1a"/>
-  <path d="M8 12h16v8H8z" fill="none" stroke="#00ff88" stroke-width="2"/>
-  <path d="M12 8h8v16h-8z" fill="none" stroke="#00ff88" stroke-width="1.5"/>
-  <circle cx="16" cy="16" r="3" fill="#00ff88"/>
-  <path d="M16 8v16M8 16h16" stroke="#00ff88" stroke-width="1" opacity="0.5"/>
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="128" fill="url(#gradient)"/>
+  <path d="M128 64C92.6538 64 64 92.6538 64 128C64 163.346 92.6538 192 128 192C163.346 192 192 163.346 192 128C192 92.6538 163.346 64 128 64ZM128 80C154.51 80 176 101.49 176 128C176 154.51 154.51 176 128 176C101.49 176 80 154.51 80 128C80 101.49 101.49 80 128 80Z" fill="white"/>
+  <path d="M128 96C110.327 96 96 110.327 96 128C96 145.673 110.327 160 128 160C145.673 160 160 145.673 160 128C160 110.327 145.673 96 128 96ZM128 112C137.941 112 144 118.059 144 128C144 137.941 137.941 144 128 144C118.059 144 112 137.941 112 128C112 118.059 118.059 112 128 112Z" fill="white"/>
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7877C6"/>
+      <stop offset="1" stop-color="#5C46EC"/>
+    </linearGradient>
+  </defs>
 </svg>
+
